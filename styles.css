@@ -1,0 +1,51 @@
+.main{
+    background-color: #043b54;
+    color: white;
+    text-align: center;
+    padding: 20px;
+}
+.nav-link{
+    color: #043b54;
+  
+}
+
+.content{
+  color: #c9ffe5 ;
+}
+.img1{
+  width: 40%;
+  height: 30%;
+  text-align: center;
+  padding: 10px;
+}
+.img2{
+  width: 40%;
+  height: 30%;
+  text-align: center;
+  padding: 10px;
+}
+.img3{
+  width: 40%;
+  height: 30%;
+  text-align: center;
+  padding: 10px;
+}
+#testimonials {
+    background-color:#336c7e;
+  
+  }
+  .testimonial-heading {
+    font-size: 3rem;
+    line-height: 1.5;
+    color: white;
+  }
+  
+  .testimonials-img {
+    width: 40%;
+    height: 40%;
+    margin: 20px;
+  }
+  
+  .carousel-item {
+    padding: 7% 15%;
+  }

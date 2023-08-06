@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Document</title>
+   <!-- CSS only -->
+   <link rel="preconnect" href="https://fonts.googleapis.com">
+   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;700&display=swap" rel="stylesheet">
+   <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@500&display=swap" rel="stylesheet">
+   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+
+   <link rel="stylesheet" href="pageStyles.css">
+
+</head>
+<body>
+   <nav class="navbar navbar-light" style="background-color: #043b54; width:100%;">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="#">
+          
+          <b style="color: white; font-size: 30px;">Shortest Job First</b>
+        </a>
+        
+    <ul class="nav justify-content-end">
+      <li class="nav-item">
+        <a style="color: white;" class="nav-link active" aria-current="page" href="index.html">Home</a>
+      </li>
+      <li class="nav-item">
+        <a style="color: white;" class="nav-link" href="sjf.html">SJF</a>
+      </li>
+      <li class="nav-item">
+        <a style="color: white;" class="nav-link" href="srtf.html">SRTF</a>
+      </li>
+      <li class="nav-item">
+        <a style="color: white;" class="nav-link" href="rr.html">RR</a>
+      </li>
+    </ul>
+  </div>
+  </nav>
+   <section>
+      <div class="description">
+         <div class="des1">
+            <h2>Simulation</h2>
+            <p>Get second by second visualization of CPU Processes</p>
+
+            <h4>Steps : </h4>
+            <ol>
+               <li>Give the input of 5 processes</li>
+               <li>Click on Simulate to see the gant-chart.</li>
+               <li>Animation followed by visualization and Gantt chart is generated</li>
+               <li>A table will be formed which will show process id,Arrival time,Burst time,Completion time, turn around time and waiting time</li>
+            </ol>
+            <h4>Terminologies : </h4>
+            <ul>
+               <li><b>Arrival Time:</b> Time at which the process arrives in the ready queue.</li>
+               <li><b>Burst Time:</b> Time required by a process for CPU execution.</li>
+               <li><b>Completion Time:</b> Time at which process completes its execution. </li>
+               <li><b>Turn around Time:</b> Time difference between completion time and arrival time.</li>
+               <li><b>Waiting Time:</b> Time Difference between turn around time and burst time.</li>
+            </ul>
+         </div>
+      </div>
+   </section>
+   <section style="background-color:#043b54;">
+      <div class="take-input container">
+         <table class="table">
+            <thead>
+               <h2 style="text-align: center; font-weight:bold; color: white;">Enter the Input of Processes</h2>
+               <tr style= "color: white;">
+                   <th>Process ID</th>
+                   <th>Arrival Time</th>
+                   <th colspan="1">Burst Time</th>
+               </tr>
+           </thead>
+           <tbody>
+               <tr>
+                   <td class="process-id">P0</td>
+                   <td class="arrival-time"><input type="number" min="0" step="1" value="2"> </td>
+                   <td class="burst-time"><input type="number" min="1" step="1" value="6"></td>
+               </tr>
+               <tr>
+                  <td class="process-id">P1</td>
+                  <td class="arrival-time" ><input type="number" min="0" step="1" value="5"> </td>
+                  <td class="burst-time"><input type="number" min="1" step="1" value="2"></td>
+              </tr>
+               <tr>
+                  <td class="process-id">P2</td>
+                  <td class="arrival-time" >
+                     <input type="number" min="0" step="1" value="1"> </td>
+                  <td class="burst-time"><input type="number" min="1" step="1" value="8"></td>
+               </tr>
+               <tr>
+                  <td class="process-id">P3</td>
+                  <td class="arrival-time" ><input type="number" min="0" step="1" value="0"> </td>
+                  <td class="burst-time"><input type="number" min="1" step="1" value="3"></td>
+               </tr>
+              
+              <tr>
+                  <td class="process-id">P4</td>
+                  <td class="arrival-time" ><input type="number" min="0" step="1" value="4"></td>
+                  <td class="burst-time"><input type="number" min="1" step="1" value="4"></td>
+            </tr>    
+           </tbody>
+          </table>
+      </div>
+   </section>
+   <div class="simulation">
+      <button id="simulate-btn">Simulate</button>
+   </div>
+   <div id="overlay" class="hide" style="z-index: 10;" ></div>
+   
+   <article id="simulation-window" class="gant-chart-animation hide">
+      <div class="timer-block">
+         <div class="info">
+            <h2 style="color: white;">Gantt Chart Visualization</h2>
+            <p class="timer-info" style="color: white;">
+               Timer goes from to finish Time
+            </p>
+         </div>
+         <div  class="clock">
+            <h1 id="timer-clock">0</h1>
+         </div>
+      </div>
+      <div class="gant-chart" id="gant-chart">
+      </div>
+      <div class="time-line" id="time-line">
+      </div>
+      <div class="close-btn-div">
+         <button id="close-btn">Close</button>
+      </div>
+   </article>
+   <div class="results-timeLine">
+      <h2 id="final-head" class="hide">Final Gantt Chart</h2>
+      <div id="gantt-chart-after">
+      </div>
+      <div id="time-line-after">
+      </div>
+   </div>
+
+   <!-- Results table -->
+   <section class="results hide" id="final-table" style="width: 55rem; text-align: center; margin: 5rem auto;">
+      <div class="table-responsive">
+         <table id="results-table" class="table table-striped table-bordered table-light ">
+            <thead>
+               <tr>
+               <th scope="col">Process ID</th>
+               <th scope="col">Arrival time</th>
+               <th scope="col">Burst Time</th>
+               <th scope="col">Completion Time</th>
+               <th scope="col">Turn Around Time</th>
+               <th scope="col">Waiting Time</th>
+               </tr>
+            </thead>
+            <tbody>
+               <tr>
+                  <th scope="row">1</th>
+                  <td>0</td>
+                  <td>0</td>
+                  <td>0</td>
+                  <td>0</td>
+                  <td>0</td>
+               </tr>
+               <tr>
+                  <th scope="row">2</th>
+                  <td>0</td>
+                  <td>0</td>
+                  <td>0</td>
+                  <td>0</td>
+                  <td>0</td>
+               </tr>
+               <tr>
+                  <th scope="row">3</th>
+                  <td>0</td>
+                  <td>0</td>
+                  <td>0</td>
+                  <td>0</td>
+                  <td>0</td>
+               </tr>
+               <tr>
+                  <th scope="row">4</th>
+                  <td>0</td>
+                  <td>0</td>
+                  <td>0</td>
+                  <td>0</td>
+                  <td>0</td>
+               </tr>
+               <tr>
+                  <th scope="row">5</th>
+                  <td>0</td>
+                  <td>0</td>
+                  <td>0</td>
+                  <td>0</td>
+                  <td>0</td>
+               </tr>
+            </tbody>
+         </table>
+      </div>
+   </section>
+   <!-- BootStrap - JavaScript Bundle with Popper -->
+   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
+   <script src="sjf.js"></script>
+</body>
+</html>
